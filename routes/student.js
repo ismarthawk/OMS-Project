@@ -5,9 +5,14 @@ router.route("/home").get((req, res) => {
   res.render("student/home");
 });
 
-router.route("/request").get((req, res) => {
-  res.render("student/request");
-});
+router
+  .route("/request")
+  .get((req, res) => {
+    res.render("student/request");
+  })
+  .post((req, res) => {
+    res.redirect("/student/home");
+  });
 
 router.route("/detailed/:id").get((req, res) => {
   res.render("components/detailed");
