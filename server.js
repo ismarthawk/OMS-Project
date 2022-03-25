@@ -1,6 +1,12 @@
 // imports
 const express = require("express");
 const app = express();
+// environmental variables
+const dotenv = require("dotenv").config({
+  path: "./config/config.env",
+});
+const connectDB = require("./config/db");
+const db = connectDB();
 
 // uses
 app.use(express.static("public"));
