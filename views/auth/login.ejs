@@ -1,0 +1,43 @@
+<%- include('../htmlhead.ejs') %>
+
+<section class="section">
+    <div class="container">
+        <p class="title has-text-centered is-1 is-hidden-mobile">Outing management System</p>
+        <p class="title has-text-centered is-1 is-hidden-desktop is-hidden-tablet">OMS</p>
+    </div>
+</section>
+<!-- Login Part Section -->
+<section class="section">
+    <div class="columns">
+        <div class="column is-flex is-align-items-center is-flex-direction-column is-hidden-mobile has-text-centered">
+            <img src="https://www.nitandhra.ac.in/main/images/logo.png" alt="" style="max-width: 200px" class="mb-6">
+            <p class="title">National Institute of Technology, AP</p>
+            <p class="subtitle">Tadepalligudem,West Godavari,Andhra Pradesh,524117</p>
+        </div>
+        <div class="column">
+            <p class="title has-text-centered">Login Here</p>
+            <form action="" method="post">
+                <div class="field py-3">
+                    <label for="" class="label">E-Mail</label>
+                    <div class="control">
+                        <input type="text" class="input" placeholder="eg.@dam@mail.com">
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="" class="label">Password</label>
+                    <div class="control">
+                        <input type="password" class="input" placeholder="Password">
+                    </div>
+                </div>
+                <a href="#">
+                    <button type="submit" class="button is-link is-fullwidth">Login</button>
+                </a>
+            </form>
+            <div class="container pt-3 pb-3">
+                <p class="is-3">New User ? <a href="#">Register Here</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<%- include('../htmlend.ejs') %>

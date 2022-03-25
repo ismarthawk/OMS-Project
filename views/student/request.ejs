@@ -1,0 +1,43 @@
+<%- include('../htmlhead')  %> 
+<%- include('../partials/navbar')  %>
+
+<section class="section">
+    <div class="container">
+        <div class="column is-6 is-offset-3">
+            <form action="" method="POST">
+                <div class="field">
+                    <label for="" class="label">Type of Outing</label>
+                    <div class="control">
+                        <div class="select">
+                            <select name="type" id="">
+                                <option value="Local">Local</option>
+                                <option value="Non-Local">Non-Local</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="" class="label">Date</label>
+                    <div class="control">
+                        <input type="date" class="input" name="date" id="" aria-placeholder="calender">
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="" class="label">Description</label>
+                    <div class="control">
+                        <textarea class="textarea" name="desc" id="" placeholder="Reason For Outing"></textarea>
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="" class="label">Where to</label>
+                    <div class="control">
+                        <input type="text" name="where" class="input" placeholder="eg. Tadepalligudem">
+                    </div>
+                </div>
+                <button type="submit" class="button is-fullwidth is-link">Submit</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<%- include('../htmlend')  %> 
