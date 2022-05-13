@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const studentSchema = new mongoose.schema({
+const studentSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
@@ -31,8 +31,8 @@ const studentSchema = new mongoose.schema({
         required: true,
     },
     Block: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Block',
+        type: String,
+        required: true,
     },
     roomNumber: {
         type: String,

@@ -1,4 +1,4 @@
-<%- include('../htmlend.ejs')  %> 
+<%- include('../htmlend.ejs')  %>
 
 <section class="section">
     <div class="container">
@@ -17,11 +17,11 @@
     <div class="columns">
         <div class="column is-4 has-offset-2"></div>
         <div class="column ">
-            <form action="">
+            <form action="/auth/register" method="post">
                 <div class="column ">
                     <label class="label">Student Name</label>
                     <div class="control ">
-                        <input class="input " type="text" placeholder="Student name">
+                        <input name="name" class="input " type="text" placeholder="Student name">
                         <span class="icon">
                         </span>
                     </div>
@@ -29,7 +29,7 @@
 
                     <label class="label">Registration number</label>
                     <div class="control ">
-                        <input class="input " type="number" placeholder="Registration number">
+                        <input name="regNumber" class="input " type="number" placeholder="Registration number">
                         <span class="icon">
                         </span>
                     </div>
@@ -37,7 +37,7 @@
 
                     <label class="label">Roll number</label>
                     <div class="control ">
-                        <input class="input " type="number" placeholder="Roll number">
+                        <input name="rollNumber" class="input " type="number" placeholder="Roll number">
                         <span class="icon">
                         </span>
                     </div>
@@ -45,15 +45,15 @@
 
                     <label class="label"> Select year</label>
                     <div>
-                        <select class="input" type="text">
+                        <select name="year" class="input" type="number">
                             <option value="none" selected disabled hidden>Select your current year of study</option>
-                            <option value="I Btech"> I Btech
+                            <option value=1> I Btech
                             </option>
-                            <option value="II Btech"> II Btech
+                            <option value=2> II Btech
                             </option>
-                            <option value="III Btech"> III Btech
+                            <option value=3> III Btech
                             </option>
-                            <option value="IV Btech"> IV Btech
+                            <option value=4> IV Btech
                             </option>
                         </select>
                     </div>
@@ -61,28 +61,26 @@
 
                     <label class="label">Branch </label>
                     <div class="control ">
-                        <input class="input " type="text" placeholder="Branch">
+                        <input name="branch" class="input " type="text" placeholder="Branch">
                         <span class="icon">
                         </span>
                     </div>
 
 
-                    <label class="label">Gender</label>
-                    <div class="control">
-                        <label class="radio">
-                            <input type="radio" name="answer">
-                            Male
-                        </label>
-                        <label class="radio">
-                            <input type="radio" name="answer">
-                            Female
-                        </label>
+                    <label class="label"> Select Gender</label>
+                    <div>
+                        <select name="gender" class="input" type="text">
+                            <option value="male"> Male
+                            </option>
+                            <option value="female"> Female
+                            </option>
+                        </select>
                     </div>
                     <br>
 
                     <label class="label">Block name</label>
                     <div class="control ">
-                        <input class="input " type="text" placeholder="Block">
+                        <input name="Block" class="input " type="text" placeholder="Block">
                         <span class="icon">
                         </span>
                     </div>
@@ -90,7 +88,7 @@
 
                     <label class="label">Room number</label>
                     <div class="control ">
-                        <input class="input " type="number" placeholder="Room number">
+                        <input name="roomNumber" class="input " type="number" placeholder="Room number">
                         <span class="icon">
                         </span>
                     </div>
@@ -98,7 +96,7 @@
 
                     <label class="label">Email</label>
                     <div class="control ">
-                        <input class="input " type="email" placeholder="Email">
+                        <input name="mail" class="input " type="email" placeholder="Email">
                         <span class="icon">
                         </span>
                     </div>
@@ -106,7 +104,7 @@
 
                     <label class="label">Student's phone Number</label>
                     <div class="control ">
-                        <input class="input " type="number" placeholder="  Student Number">
+                        <input name="mobileNumber" class="input " type="number" placeholder="  Student Number">
                         <span class="icon">
                         </span>
                     </div>
@@ -114,7 +112,7 @@
 
                     <label class="label">Parent's phone Number</label>
                     <div class="control ">
-                        <input class="input " type="number" placeholder="Parent Number">
+                        <input name="parentMobileNumber" class="input " type="number" placeholder="Parent Number">
                         <span class="icon">
                         </span>
                     </div>
@@ -122,7 +120,7 @@
 
                     <label class="label">Password</label>
                     <div class="control ">
-                        <input class="input " type="password" placeholder="Password">
+                        <input  name="password" class="input " type="password" placeholder="Password">
                         <span class="icon">
                         </span>
                     </div>
@@ -144,4 +142,4 @@
         </form>
     </div>
 
-<%- include('../htmlhead.ejs')  %> 
+    <%- include('../htmlhead.ejs')  %>
