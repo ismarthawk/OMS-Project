@@ -10,14 +10,14 @@ const blockSchema = new mongoose.Schema({
         enum:['boys','girls'],
         required: true,
     },
-    warden: [{
+    wardens: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Warden',
     }],
-    // students: [{
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'Student',
-    // }],
+    students: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Student',
+    }],
 })
 
 

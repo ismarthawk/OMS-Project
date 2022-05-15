@@ -18,6 +18,10 @@ const wardenSchema = new mongoose.Schema({
         type: String,  
         required: true,
     },
+    password: {
+        type: String,
+        required: true,
+    },
     pendingOutings: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Outing',

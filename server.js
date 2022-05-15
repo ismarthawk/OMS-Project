@@ -28,7 +28,10 @@ app.use(express.static("public"));
 // app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
-app.use(session({secret: 'secret'}))
+app.use(session({
+  secret: 'secret',
+  resave: true,
+  saveUninitialized: true}))
 
 
 //sessions
@@ -40,7 +43,7 @@ const isStudent = (req, res, next) => {
 }
 
 const isWarden = (req, res, next) => {
-  if (!req.session.user_id) {
+  if (!req.session.warden_id) {
       return res.redirect('../auth/login')
   }
   next();

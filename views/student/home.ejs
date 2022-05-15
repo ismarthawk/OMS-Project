@@ -6,16 +6,16 @@
             <div class="container">
                 <p class="title">Warden Details :</p>
                 <div class="container">
-                    <p class="is-size-4">Mr. Kurmayya</p>
-                    <p class="is-size-4">Indravathi Block</p>
-                    <p class="is-size-4">1234567890</p>
-                    <p class="is-size-4">kurmi@mail.com</p>
+                    <p class="is-size-4">Name : <%=warden.name%></p>
+                    <p class="is-size-4">Block : <%=user.block.name%></p>
+                    <p class="is-size-4">Phone Number : <%=warden.mobileNumber%></p>
+                    <p class="is-size-4">Mail : <%=warden.mail%></p>
                 </div>
             </div>
             <section class="section">
                 <div class="container">
-                    <button class="button is-link">History</button>
-                    <button class="button is-link">Request</button>
+                    <a href="./history"><button class="button is-link">History</button></a>
+                    <a href="./request"><button class="button is-link">Request</button></a>
                 </div>
             </section>
         </div>
@@ -27,7 +27,7 @@
 
                 <div class="column is-2">
                     <div class="container">
-                        <a href="#" class="button is-link is-outlined">More</a>
+                        <a href="./active" class="button is-link is-outlined">More</a>
                     </div>
                 </div>
             </div>
@@ -48,7 +48,7 @@
                 </div>
                 <div class="column is-2">
                     <div class="container">
-                        <a href="#" class="button is-link is-outlined">More</a>
+                        <a href="./pending" class="button is-link is-outlined">More</a>
                     </div>
                 </div>
             </div>

@@ -1,9 +1,14 @@
 const express = require("express");
 const router = express.Router();
+const Student = require("../models/student");
+const Warden = require("../models/warden");
 
 
-router.route("/home").get((req, res) => {
-  res.render("student/home");
+router.route("/home/:id").get(async (req, res) => {
+  student_id = req.params.id;
+  const user = await Student.findById(student_id).populate('block');
+  const warden = await Warden.findById(user.block.wardens[0]);
+  res.render("student/home",{user,warden});
 });
 
 router.route("/request").get((req, res) => {

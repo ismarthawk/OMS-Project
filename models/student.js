@@ -30,9 +30,9 @@ const studentSchema = new mongoose.Schema({
         enum: ['male', 'female'],
         required: true,
     },
-    Block: {
-        type: String,
-        required: true,
+    block: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Block',
     },
     roomNumber: {
         type: String,
