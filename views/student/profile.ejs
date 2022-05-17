@@ -1,31 +1,55 @@
 <%- include('../htmlhead.ejs') %> 
 <%- include('../partials/navbar.ejs') %>
 
-   
 
-        <div class="container column is-6 is-offset-3 has-text-centered">
-            <img class="profile-img" width="200" height="200"
+        <div class="card has-background-grey-lighter container column is-4 is-offset-4 mb-5 has-text-centered">
+            <img class="profile-img" width="200" height="200" style="border-radius: 100%;"
             src="https://www.hardiagedcare.com.au/wp-content/uploads/2019/02/default-avatar-profile-icon-vector-18942381.jpg"
-            alt="profile-img" />
-            <h1 class="title">Tulumuri Krishna Madhav</h1>
-        <div class="column is-6 is-offset-3 has-text-centered">
+            alt="profile-img"/>
+            <h1 class="title"><%=user.name%></h1>
+        <div class="column  has-text-centered">
             <div class="is-flex is-justify-content-space-between">
-                <p class="is-size-4">Mail : </p>
-                <p class="is-size-4">Madhava@mail.com</p>
+                <p class="is-size-4">Reg Number : </p>
+                <p class="is-size-4"><%=user.regNumber%></p>
             </div>
             <div class="is-flex is-justify-content-space-between">
-                <p class="is-size-4">Phone : </p>
-                <p class="is-size-4">8688466782</p>
+                <p class="is-size-4">Roll Number : </p>
+                <p class="is-size-4"><%=user.rollNumber%></p>
+            </div>
+            <div class="is-flex is-justify-content-space-between">
+                <p class="is-size-4">Year of Study : </p>
+                <p class="is-size-4"><%=user.year%></p>
             </div>
             <div class="is-flex is-justify-content-space-between">
                 <p class="is-size-4">Branch : </p>
-                <p class="is-size-4">CSE</p>
+                <p class="is-size-4"><%=user.branch%></p>
+            </div>
+            <div class="is-flex is-justify-content-space-between">
+                <p class="is-size-4">Gender : </p>
+                <p class="is-size-4"><%=user.gender%></p>
             </div>
             <div class="is-flex is-justify-content-space-between">
                 <p class="is-size-4">Block : </p>
-                <p class="is-size-4">Indravathi</p>
+                <p class="is-size-4"><%=user.block.name%></p>
+            </div>
+            <div class="is-flex is-justify-content-space-between">
+                <p class="is-size-4">Room Number : </p>
+                <p class="is-size-4"><%=user.roomNumber%></p>
+            </div>
+            <div class="is-flex is-justify-content-space-between">
+                <p class="is-size-4">Mail : </p>
+                <p class="is-size-4"><%=user.mail%></p>
+            </div>
+            <div class="is-flex is-justify-content-space-between">
+                <p class="is-size-4">Phone No : </p>
+                <p class="is-size-4"><%=user.mobileNumber%></p>
+            </div>
+            <div class="is-flex is-justify-content-space-between">
+                <p class="is-size-4">Parent Phone No : </p>
+                <p class="is-size-4"><%=user.parentMobileNumber%></p>
             </div>
         </div>
     </div>
+
 
     <%- include('../htmlend.ejs') %> 

@@ -30,6 +30,11 @@ const wardenSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Outing',
     }],
+    rejectedOutings: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Outing',
+
+    }]
 
 
 })

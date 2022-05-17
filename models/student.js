@@ -66,6 +66,7 @@ const studentSchema = new mongoose.Schema({
     activeOuting: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Outing',
+        default: null
     },
     rejectedOutings: [{
         type: mongoose.Schema.Types.ObjectId,

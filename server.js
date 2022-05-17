@@ -53,7 +53,7 @@ const isWarden = (req, res, next) => {
 
 // routes
 app.use("/auth", require("./routes/auth"));
-app.use("/student",isStudent, require("./routes/student"));
+app.use("/student", isStudent,require("./routes/student"));
 app.use("/warden",isWarden, require("./routes/warden"));
 
 app.listen(3000, () => {

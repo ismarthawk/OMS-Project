@@ -14,8 +14,8 @@
             </div>
             <section class="section">
                 <div class="container">
-                    <a href="./history"><button class="button is-link">History</button></a>
-                    <a href="./request"><button class="button is-link">Request</button></a>
+                    <a href="../history/<%=user._id%>"><button class="button is-link">History</button></a>
+                    <a href="../request/<%=user._id%>"><button class="button is-link">Request</button></a>
                 </div>
             </section>
         </div>
@@ -25,22 +25,33 @@
                     <p class="title">Active Passes</p>
                 </div>
 
-                <div class="column is-2">
+                <!-- <div class="column is-2">
                     <div class="container">
                         <a href="./active" class="button is-link is-outlined">More</a>
                     </div>
-                </div>
+                </div> -->
             </div>
 
-            <a href="">
+            <% if(activeOuting){ %>
+            <a href="../<%=user._id%>/detailedActive/<%=activeOuting._id%>">
                 <div class="card has-background-success">
                     <div class="card-content">
                         <div class="content">
-                            <p class="is-size-5">Date : 22 Dec 2022</p>
+                            <p class="is-size-5">Date : <%=activeOuting.requestedFor%></p>
                         </div>
                     </div>
                 </div>
             </a>
+            <% } else{ %>
+
+            <div class="card has-background-success">
+                <div class="card-content">
+                    <div class="content">
+                        <p>No Active Outings</p>
+                    </div>
+                </div>
+            </div>
+            <%}%>
 
             <div class="columns mt-1">
                 <div class="column is-10">
@@ -48,19 +59,34 @@
                 </div>
                 <div class="column is-2">
                     <div class="container">
-                        <a href="./pending" class="button is-link is-outlined">More</a>
+                        <a href="../pending/<%=user._id%>" class="button is-link is-outlined">More</a>
                     </div>
                 </div>
             </div>
-            <a href="">
-                <div class="card has-background-danger">
-                    <div class="card-content">
-                        <div class="content">
-                            <p class="is-size-5">Date : 22 Dec 2022</p>
+
+            <% if(pendingOutings.length!==0){ %>
+            <% for(let pendingOuting of pendingOutings) { %>
+                    <a href="../<%=user._id%>/detailedPending/<%=pendingOuting._id%>">
+                        <div class="card has-background-warning">
+                            <div class="card-content">
+                                <div class="content">
+                                    <p class="is-size-5">Date : <%=pendingOuting.requestedFor%>></p>
+                                </div>
+                            </div>
                         </div>
+                    </a>
+                    <br>
+            <% }%>
+            <% } else{ %>
+            <div class="card has-background-warning">
+                <div class="card-content">
+                    <div class="content">
+                        <p>No Pending Outings</p>
                     </div>
                 </div>
-            </a>
+            </div>
+            <%}%>
+
 
         </div>
     </div>

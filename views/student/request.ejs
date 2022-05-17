@@ -4,14 +4,14 @@
 <section class="section">
     <div class="container">
         <div class="column is-6 is-offset-3">
-            <form action="" method="POST">
+            <form action="./<%=user._id%>" method="POST">
                 <div class="field">
                     <label for="" class="label">Type of Outing</label>
                     <div class="control">
                         <div class="select">
                             <select name="type" id="">
-                                <option value="Local">Local</option>
-                                <option value="Non-Local">Non-Local</option>
+                                <option value="local">Local</option>
+                                <option value="non-local">Non-Local</option>
                             </select>
                         </div>
                     </div>
@@ -19,7 +19,7 @@
                 <div class="field">
                     <label for="" class="label">Date</label>
                     <div class="control">
-                        <input type="date" class="input" name="date" id="" aria-placeholder="calender">
+                        <input type="date" class="input" name="requestedFor" id="" aria-placeholder="calender">
                     </div>
                 </div>
                 <div class="field">

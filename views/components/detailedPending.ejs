@@ -1,0 +1,26 @@
+<%- include('../htmlhead.ejs')  %> 
+<%- include('../partials/navbar.ejs')  %> 
+
+<section class="section">
+    <div class="container">
+        <div class="column is-8 is-offset-2">
+            <div class="message">
+                <div class="message-header has-background-warning">
+                    <p></p>
+                </div>
+            </div>
+            <label class="label">Date :</label>
+            <p><%=outing.requestedFor%></p>
+            <label class="label">Requested On :</label>
+            <p><%=outing.requestedOn%></p>
+            <label for="" class="label">Type :</label>
+            <p><%=outing.type%></p>
+            <label class="label">Place :</label>
+            <p><%=outing.where%></p>
+            <label for="" class="label">Description :</label>
+            <p><%=outing.desc%></p>
+        </div>
+    </div>
+</section>
+
+<%- include('../htmlend.ejs') %> 

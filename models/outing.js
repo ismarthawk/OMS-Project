@@ -9,7 +9,15 @@ const outingSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    where: {
+        type: String,
+        required: true,
+    },
     requestedOn: {
+        type: Date,
+        required: true,
+    },
+    requestedFor: {
         type: Date,
         required: true,
     },
@@ -25,10 +33,10 @@ const outingSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Student',
     },
-    // requestedTo: {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'Warden'
-    // }
+    requestedTo: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Warden'
+    }
 })
 
 

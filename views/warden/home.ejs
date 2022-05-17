@@ -2,40 +2,61 @@
 <%- include('../partials/navbar.ejs') %>
 <section class="section">
     <div class="container">
-        <p class="title has-text-centered">Indravathi Block</p>
-
-        <a href="#">
-            <div class="card mt-4 has-background-danger has-text-white">
+        <!-- <p class="title has-text-centered"><%=user.block.name%> Block</p> -->
+        <div class="columns is-multiline">
+            <div class="column is-6">
+            <p class="title">Pending Requests : </p>
+            </div>
+            <div class="column is-6">
+            <div class="buttons">
+            <form action="/warden/acceptAll/<%=user._id%>" method="post" class="container has-text-centered">
+                <button class="button is-link is-success">Accept all</button>
+            </form>
+            <!-- </div>
+            <div class="column is-3"> -->
+            <form action="/warden/rejectAll/<%=user._id%>" method="post" class="container has-text-centered">
+                <button class="button is-link is-danger">Reject all</button>
+            </form>
+            </div>
+            </div>
+        </div>
+        <%if(pendingOutings.length!==0){%>
+            <div class="columns is-multiline">
+            <%for(let pendingOuting of pendingOutings){%>
+        
+        <div class="column is-6">
+        <a href="">
+            <div class="card mt-4 has-background-warning has-text-white">
                 <div class="card-content">
                     <div class="content">
-                        <p class="is-size-5">Date : 22nd December</p>
-                        <p class="is-szie-5">Non-Local</p>
+                        <p class="is-size-5">Date : <%=pendingOuting.requestedFor%></p>
+                        <p class="is-size-5">Type : <%=pendingOuting.type%></p>
+                        <p class="is-size-5"></p>
+                        <div class="buttons">
+                        <form action="/warden/accept/<%=pendingOuting._id%>" method="post" class="container has-text-centered">
+                            <button class="button is-link is-success">Accept</button>
+                        </form>
+                        <form action="/warden/reject/<%=pendingOuting._id%>" method="post" class="container has-text-centered">
+                            <button class="button is-link is-danger">Reject</button>
+                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </a>
+        </div>
 
-        <a href="#">
-            <div class="card mt-4 has-background-danger has-text-white">
+            <%}%>
+        </div>
+        <%}else{%>
+            <div class="card mt-4 has-background-warning has-text-white">
                 <div class="card-content">
                     <div class="content">
-                        <p class="is-size-5">Date : 22nd December</p>
-                        <p class="is-szie-5">Local</p>
+                        <P>No Pending Outings</P>
                     </div>
                 </div>
             </div>
-        </a>
-
-        <a href="#">
-            <div class="card mt-4 has-background-danger has-text-white">
-                <div class="card-content">
-                    <div class="content">
-                        <p class="is-size-5">Date : 22nd December</p>
-                        <p class="is-szie-5">Non-Local</p>
-                    </div>
-                </div>
-            </div>
-        </a>
+        <%}%>
 
 
 

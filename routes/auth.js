@@ -8,11 +8,18 @@ const Block = require("../models/block");
 // app.use(express.json())
 
 router.route("/login").get((req, res) => {
+  if (req.session.student_id) {
+    return res.redirect("/student/home/" + req.session.student_id);
+  }
   res.render("auth/login");
 });
 
 
 router.post("/login", async (req, res) => {
+  if (req.session.student_id) {
+    return res.redirect("/student/home/" + req.session.student_id);
+  }
+    
     const { mail, password } = req.body;
     const foundStudent = await Student.findOne({ mail });
     const foundWarden = await Warden.findOne({ mail });
@@ -29,7 +36,7 @@ router.post("/login", async (req, res) => {
     }
     else if (validWarden) {
       req.session.warden_id = foundWarden._id;
-      res.redirect("/warden/home");
+      res.redirect("/warden/home/"+foundWarden._id);
     }
     else {
       res.redirect("/auth/login");
