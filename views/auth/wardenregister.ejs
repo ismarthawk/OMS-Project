@@ -17,7 +17,7 @@
     <div class="columns">
         <div class="column is-4 has-offset-2"></div>
         <div class="column ">
-            <form action="/auth/wardenregister" method="post">
+            <form name="registerForm"action="/auth/wardenregister" method="post" onSubmit="return validateForm()">
                 <div class="column ">
                     <label class="label">Warden Name</label>
                     <div class="control ">
@@ -29,7 +29,7 @@
                     <label class="label">Block name</label>
                     <div>
                         <select name="blockid" class="input" type="text">
-                            <option value="none" selected disabled hidden>Select Block Name</option>
+                            <option value="" selected disabled hidden>Select Block Name</option>
                             <% for(let block of blocks) { %>
                                 <option value="<%=block._id%>"><%=block.name%></option>
                             <% }%>
@@ -63,7 +63,7 @@
 
                     <label class="label">Confirm Password</label>
                     <div class="control ">
-                        <input class="input " type="password" placeholder="Confirm Password">
+                        <input name="confirmPassword" class="input " type="password" placeholder="Confirm Password">
                         <span class="icon">
                         </span>
                     </div>
@@ -76,5 +76,7 @@
         <div class="column is-one-quarter"></div>
         </form>
     </div>
+
+    <script src="/js/wardenRegister.js"></script>
 
     <%- include('../htmlhead.ejs')  %>

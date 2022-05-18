@@ -37,24 +37,32 @@ app.use(session({
 //sessions
 const isStudent = (req, res, next) => {
   if (!req.session.student_id) {
-      return res.redirect('../auth/login')
+      return res.redirect('/auth/login')
   }
   next();
 }
 
 const isWarden = (req, res, next) => {
   if (!req.session.warden_id) {
-      return res.redirect('../auth/login')
+      return res.redirect('/auth/login')
   }
   next();
 }
 
 
+app.get('/', (req, res, next) => {
+  res.redirect('/auth/login');
+});
 
 // routes
 app.use("/auth", require("./routes/auth"));
 app.use("/student", isStudent,require("./routes/student"));
 app.use("/warden",isWarden, require("./routes/warden"));
+
+app.get('*', function (req, res) {
+  res.redirect(("/auth/login"));
+})
+
 
 app.listen(3000, () => {
   console.log("Running on port 3000");

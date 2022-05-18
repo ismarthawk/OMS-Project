@@ -1,0 +1,63 @@
+<%- include('../htmlhead.ejs')  %> 
+<%- include('../partials/navbar.ejs')  %>
+<section class="section">
+
+<div class="container">
+    <p class="title">Used Passes</p>
+    
+<% if(usedOutings.length!==0){ %>
+    <%for(let usedOuting of usedOutings){ %>
+    <a href="../detailedDone/<%=usedOuting._id%>">
+        <div class="card mt-4 has-background-danger">
+            <div class="card-content">
+                <div class="content">
+                    <p class="is-size-5">Date : <%=usedOuting.requestedFor%></p>
+                    <p class="is-szie-5"><%=usedOuting.type%></p>
+                </div>
+            </div>
+        </div>
+    </a>
+    <% } %>
+<% }else { %>
+    <div class="card mt-4 has-background-danger">
+        <div class="card-content">
+            <div class="content">
+                <p>No Used Outings</p>
+            </div>
+        </div>
+    </div>
+<%}%>
+</div>
+
+<br>
+<div class="container">
+    <p class="title">Rejected Passes</p>
+    
+<% if(rejectedOutings.length!==0){ %>
+    <%for(let rejectedOuting of rejectedOutings){ %>
+    <a href="../detailedDone/<%=rejectedOuting._id%>">
+        <div class="card mt-4 has-background-danger">
+            <div class="card-content">
+                <div class="content">
+                    <p class="is-size-5">Date : <%=rejectedOuting.requestedFor%></p>
+                    <p class="is-szie-5"><%=rejectedOuting.type%></p>
+                </div>
+            </div>
+        </div>
+    </a>
+    <% } %>
+<% }else { %>
+    <div class="card mt-4 has-background-danger">
+        <div class="card-content">  
+            <div class="content">
+                <p>No Rejected Outings</p>
+            </div>
+        </div>
+    </div>
+<%}%>
+</div>
+
+
+</section>
+
+<%- include('../htmlend.ejs')  %> 

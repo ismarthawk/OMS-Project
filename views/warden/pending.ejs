@@ -1,0 +1,47 @@
+<%- include('../htmlhead.ejs')  %> 
+<%- include('../partials/navbar.ejs')  %>
+<section class="section">
+
+    <div class="container">
+        <div class="columns">
+            <div class="column is-6">
+                <p class="title">Pending Requests : </p>
+            </div>
+            <div class="column is-6">
+                <div class="buttons">
+                    <form action="/warden/acceptAll/<%=user._id%>" method="post" class="container has-text-centered">
+                        <button class="button is-link is-success">Accept all</button>
+                    </form>
+                    <form action="/warden/rejectAll/<%=user._id%>" method="post" class="container has-text-centered">
+                        <button class="button is-link is-danger">Reject all</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    <% if(pendingOutings.length!==0){ %>
+        <%for(let pendingOuting of pendingOutings){ %>
+        <a href="../detailedPending/<%=pendingOuting._id%>">
+            <div class="card mt-4 has-background-warning">
+                <div class="card-content">
+                    <div class="content">
+                        <p class="is-size-5">Date : <%=pendingOuting.requestedOn%></p>
+                        <p class="is-szie-5"><%=pendingOuting.type%></p>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <% } %>
+    <% }else { %>
+        <div class="card mt-4 has-background-warning">
+            <div class="card-content">
+                <div class="content">
+                    <P>No Pending Outings</P>
+                </div>
+            </div>
+        </div>
+    <%}%>
+</div>
+
+</section>
+<%- include('../htmlend.ejs')  %> 

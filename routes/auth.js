@@ -11,6 +11,9 @@ router.route("/login").get((req, res) => {
   if (req.session.student_id) {
     return res.redirect("/student/home/" + req.session.student_id);
   }
+  if (req.session.warden_id) {
+    return res.redirect("/warden/home/" + req.session.warden_id);
+  }
   res.render("auth/login");
 });
 
@@ -87,9 +90,12 @@ router.post("/wardenregister", async (req, res) => {
 
 router.post("/logout", (req, res) => {
   req.session.student_id = null;
+  req.session.warden_id = null;
   res.redirect(("/auth/login"));
 })
 
-
+router.get('*', function (req, res) {
+  res.redirect(("/auth/login"));
+})
 
 module.exports = router;

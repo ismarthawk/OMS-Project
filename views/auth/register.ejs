@@ -17,7 +17,7 @@
     <div class="columns">
         <div class="column is-4 has-offset-2"></div>
         <div class="column ">
-            <form action="/auth/register" method="post">
+            <form name ="registerForm" action="/auth/register" method="post" onSubmit="return validateForm()">
                 <div class="column ">
                     <label class="label">Student Name</label>
                     <div class="control ">
@@ -46,7 +46,7 @@
                     <label class="label"> Select year</label>
                     <div>
                         <select name="year" class="input" type="number">
-                            <option value="none" selected disabled hidden>Select your current year of study</option>
+                            <option value="" selected disabled hidden>Select your current year of study</option>
                             <option value=1> I Btech
                             </option>
                             <option value=2> II Btech
@@ -62,7 +62,7 @@
                     <label class="label">Branch </label>
                     <div>
                         <select name="branch" class="input" type="text">
-                            <option value="none" selected disabled hidden>Select B  ranch</option>
+                            <option value="" selected disabled hidden>Select Branch</option>
                             <% for(let branch of branches) { %>
                                 <option value="<%=branch%>"><%=branch%></option>
                             <% }%>
@@ -74,6 +74,7 @@
                     <label class="label"> Select Gender</label>
                     <div>
                         <select name="gender" class="input" type="text">
+                            <option value="" selected disabled hidden>Select Gender</option>
                             <option value="male"> Male
                             </option>
                             <option value="female"> Female
@@ -85,7 +86,7 @@
                     <label class="label">Block name</label>
                     <div>
                         <select name="blockid" class="input" type="text">
-                            <option value="none" selected disabled hidden>Select Block Name</option>
+                            <option value="" selected disabled hidden>Select Block Name</option>
                             <% for(let block of blocks) { %>
                                 <option value="<%=block._id%>"><%=block.name%></option>
                             <% }%>
@@ -136,7 +137,7 @@
 
                     <label class="label">Confirm Password</label>
                     <div class="control ">
-                        <input class="input " type="password" placeholder="Confirm Password">
+                        <input class="input" name="confirmPassword" type="password" placeholder="Confirm Password">
                         <span class="icon">
                         </span>
                     </div>
@@ -150,4 +151,7 @@
         </form>
     </div>
 
+    <script src="/js/studentRegister.js"></script>
+
+    
     <%- include('../htmlhead.ejs')  %>

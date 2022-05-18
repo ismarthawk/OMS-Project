@@ -1,32 +1,31 @@
 <%- include('../htmlhead.ejs') %>
 <%- include('../partials/navbar.ejs') %>
+
 <section class="section">
-    <div class="container">
-        <!-- <p class="title has-text-centered"><%=user.block.name%> Block</p> -->
-        <div class="columns is-multiline">
-            <div class="column is-6">
-            <p class="title">Pending Requests : </p>
+    <div class="columns">
+        <div class="column">
+            <div class="columns">
+                <div class="column is-6">
+                    <p class="title">Pending Requests : </p>
+                </div>
+                <div class="column is-6">
+                    <div class="buttons">
+                        <form action="/warden/acceptAll/<%=user._id%>" method="post" class="container has-text-centered">
+                            <button class="button is-link is-success">Accept all</button>
+                        </form>
+                        <form action="/warden/rejectAll/<%=user._id%>" method="post" class="container has-text-centered">
+                            <button class="button is-link is-danger">Reject all</button>
+                        </form>
+                        <form action="../pending/<%=user._id%>" method="get" class="container has-text-centered">
+                            <button class="button is-link is-outlined">More</button>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <div class="column is-6">
-            <div class="buttons">
-            <form action="/warden/acceptAll/<%=user._id%>" method="post" class="container has-text-centered">
-                <button class="button is-link is-success">Accept all</button>
-            </form>
-            <!-- </div>
-            <div class="column is-3"> -->
-            <form action="/warden/rejectAll/<%=user._id%>" method="post" class="container has-text-centered">
-                <button class="button is-link is-danger">Reject all</button>
-            </form>
-            </div>
-            </div>
-        </div>
         <%if(pendingOutings.length!==0){%>
-            <div class="columns is-multiline">
             <%for(let pendingOuting of pendingOutings){%>
-        
-        <div class="column is-6">
-        <a href="">
-            <div class="card mt-4 has-background-warning has-text-white">
+        <a href="../detailedPending/<%=pendingOuting._id%> ">
+            <div class="card mt-4 has-background-warning">
                 <div class="card-content">
                     <div class="content">
                         <p class="is-size-5">Date : <%=pendingOuting.requestedFor%></p>
@@ -44,24 +43,92 @@
                 </div>
             </div>
         </a>
-        </div>
-
             <%}%>
-        </div>
         <%}else{%>
             <div class="card mt-4 has-background-warning has-text-white">
                 <div class="card-content">
                     <div class="content">
-                        <P>No Pending Outings</P>
+                        <P>No Pending Requests</P>
                     </div>
                 </div>
             </div>
         <%}%>
+        </div>
+        <div class="column mt-1">
+            <div class="columns ">
+                <div class="column is-10">
+                    <p class="title">Approved Outings</p>
+                </div>
+                <div class="column is-2">
+                    <div class="container">
+                        <a href="../approved/<%=user._id%>" class="button is-link is-outlined">More</a>
+                    </div>
+                </div>
+            </div>
+
+            <% if(approvedOutings.length!==0){ %>
+            <% for(let approvedOuting of approvedOutings) { %>
+                    <a href="../detailedActive/<%=approvedOuting._id%>">
+                        <div class="card has-background-success">
+                            <div class="card-content">
+                                <div class="content">
+                                    <p class="is-size-5">Date : <%=approvedOuting.requestedFor%>></p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <br>
+            <% }%>
+            <% } else{ %>
+            <div class="card has-background-success">
+                <div class="card-content">
+                    <div class="content">
+                        <p>No Approved Outings</p>
+                    </div>
+                </div>
+            </div>
+            <%}%>
+
+            <div class="columns mt-1">
+                <div class="column is-10">
+                    <p class="title">Rejected Outings</p>
+                </div>
+                <div class="column is-2">
+                    <div class="container">
+                        <a href="../rejected/<%=user._id%>" class="button is-link is-outlined">More</a>
+                    </div>
+                </div>
+            </div>
+
+            <% if(rejectedOutings.length!==0){ %>
+            <% for(let rejectedOuting of rejectedOutings) { %>
+                    <a href="../detailedDone/<%=rejectedOuting._id%>">
+                        <div class="card has-background-danger">
+                            <div class="card-content">
+                                <div class="content">
+                                    <p class="is-size-5">Date : <%=rejectedOuting.requestedFor%>></p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <br>
+            <% }%>
+            <% } else{ %>
+            <div class="card has-background-danger">
+                <div class="card-content">
+                    <div class="content">
+                        <p>No Rejected Outings</p>
+                    </div>
+                </div>
+            </div>
+            <%}%>
 
 
-
+        </div>
     </div>
-
 </section>
+
+
+
 
 <%- include('../htmlend.ejs')  %> 

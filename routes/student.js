@@ -32,6 +32,9 @@ router.route("/request/:id").post(async (req, res) => {
   student_id = req.params.id;
   const user = await Student.findById(student_id).populate('block');
   const warden = await Warden.findById(user.block.wardens[0]);
+  if (!warden) {
+      return res.redirect("../home/"+student_id);
+  }
   const { type, requestedFor, desc, where } = req.body;
   const requestedBy = user;
   const requestedTo = warden;
@@ -48,29 +51,29 @@ router.route("/request/:id").post(async (req, res) => {
 });
 
 
-router.route("/:id/detailedActive/:outingid").get(async (req, res) => {
-  student_id = req.params.id;
+router.route("/detailedActive/:outingid").get(async (req, res) => {
   outing_id = req.params.outingid;
+  const outing = await Outing.findById(outing_id).populate('requestedBy');
+  student_id = outing.requestedBy;
   const user = await Student.findById(student_id).populate('block');
-  const outing = await Outing.findById(outing_id);
   res.render("components/detailedActive", { user ,outing});
 });
 
 
-router.route("/:id/detailedPending/:outingid").get(async (req, res) => {
-  student_id = req.params.id;
+router.route("/detailedPending/:outingid").get(async (req, res) => {
   outing_id = req.params.outingid;
+  const outing = await Outing.findById(outing_id).populate('requestedBy');
+  student_id = outing.requestedBy;
   const user = await Student.findById(student_id).populate('block');
-  const outing = await Outing.findById(outing_id);
   res.render("components/detailedPending", { user ,outing});
 });
 
 
-router.route("/:id/detailedDone/:outingid").get(async (req, res) => {
-  student_id = req.params.id;
+router.route("/detailedDone/:outingid").get(async (req, res) => {
   outing_id = req.params.outingid;
+  const outing = await Outing.findById(outing_id).populate('requestedBy');
+  student_id = outing.requestedBy;
   const user = await Student.findById(student_id).populate('block');
-  const outing = await Outing.findById(outing_id);
   res.render("components/detailedDone", { user ,outing});
 });
 
@@ -88,18 +91,20 @@ router.route("/history/:id").get(async (req, res) => {
   const activeOuting = 0;
   const usedOutings = user.usedOutings;
   const rejectedOutings = user.rejectedOutings;
-  res.render("partials/outingList",{user,activeOuting,pendingOutings,usedOutings,rejectedOutings});
+  res.render("student/history",{user,activeOuting,pendingOutings,usedOutings,rejectedOutings});
 });
 
 router.route("/pending/:id").get(async (req, res) => {
+  student_id = req.params.id;
   const user = await Student.findById(student_id).populate('block').populate('pendingOutings');
   const pendingOutings = user.pendingOutings;
-  res.render("partials/pending",{user,pendingOutings});
+  res.render("student/pending",{user,pendingOutings});
 });
 
 router.post(("/use/:id"), async (req, res) => {
   const outing_id = req.params.id;
   const outing = await Outing.findById(outing_id);
+  outing.usedOn = new Date();
   const student_id = outing.requestedBy;
   const student = await Student.findById(student_id).populate('activeOuting').populate('usedOutings');
   student.usedOutings.push(outing);
@@ -108,7 +113,9 @@ router.post(("/use/:id"), async (req, res) => {
   res.redirect("/student/home/"+student_id);
 })
 
-
+router.get('*', function (req, res) {
+  res.redirect(("/auth/login"));
+})
 // router.route("/active").get((req, res) => {
 //   res.render("partials/outingList");
 // });

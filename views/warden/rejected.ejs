@@ -1,0 +1,33 @@
+<%- include('../htmlhead.ejs')  %> 
+<%- include('../partials/navbar.ejs')  %>
+<section class="section">
+
+    <div class="container">
+        <p class="title">Pending Passes</p>
+        
+    <% if(rejectedOutings.length!==0){ %>
+        <%for(let rejectedOuting of rejectedOutings){ %>
+        <a href="../detailedDone/<%=rejectedOuting._id%>">
+            <div class="card mt-4 has-background-danger">
+                <div class="card-content">
+                    <div class="content">
+                        <p class="is-size-5">Date : <%=rejectedOuting.requestedOn%></p>
+                        <p class="is-szie-5"><%=rejectedOuting.type%></p>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <% } %>
+    <% }else { %>
+        <div class="card mt-4 has-background-danger">
+            <div class="card-content">
+                <div class="content">
+                    <P>No Rejected Outings</P>
+                </div>
+            </div>
+        </div>
+    <%}%>
+</div>
+
+</section>
+<%- include('../htmlend.ejs')  %> 

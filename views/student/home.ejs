@@ -6,10 +6,14 @@
             <div class="container">
                 <p class="title">Warden Details :</p>
                 <div class="container">
+                    <% if(warden){ %> 
                     <p class="is-size-4">Name : <%=warden.name%></p>
                     <p class="is-size-4">Block : <%=user.block.name%></p>
                     <p class="is-size-4">Phone Number : <%=warden.mobileNumber%></p>
                     <p class="is-size-4">Mail : <%=warden.mail%></p>
+                    <% }else{ %>
+                    <p class="is-size-4">No Warden Assigned</p>
+                    <% } %>  
                 </div>
             </div>
             <section class="section">
@@ -33,7 +37,7 @@
             </div>
 
             <% if(activeOuting){ %>
-            <a href="../<%=user._id%>/detailedActive/<%=activeOuting._id%>">
+            <a href="../detailedActive/<%=activeOuting._id%>">
                 <div class="card has-background-success">
                     <div class="card-content">
                         <div class="content">
@@ -66,7 +70,7 @@
 
             <% if(pendingOutings.length!==0){ %>
             <% for(let pendingOuting of pendingOutings) { %>
-                    <a href="../<%=user._id%>/detailedPending/<%=pendingOuting._id%>">
+                    <a href="../detailedPending/<%=pendingOuting._id%>">
                         <div class="card has-background-warning">
                             <div class="card-content">
                                 <div class="content">

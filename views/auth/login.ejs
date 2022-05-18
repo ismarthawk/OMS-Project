@@ -16,11 +16,11 @@
         </div>
         <div class="column">
             <p class="title has-text-centered">Login Here</p>
-            <form action="/auth/login" method="post">
+            <form name="loginForm" action="/auth/login" method="post" onSubmit="return validateForm()">
                 <div class="field py-3">
                     <label for="" class="label">E-Mail</label>
                     <div class="control">
-                        <input name="mail"type="text" class="input" placeholder="eg.@dam@mail.com">
+                        <input name="mail" type="text" class="input" placeholder="eg.RollNo@nitandhra.ac.in">
                     </div>
                 </div>
                 <div class="field">
@@ -30,14 +30,25 @@
                     </div>
                 </div>
                 <a href="#">
-                    <button type="submit" class="button is-link is-fullwidth">Login</button>
+                    <button type="submit" class="button is-link is-fullwidth" id="Login">Login</button>
                 </a>
             </form>
-            <div class="container pt-3 pb-3">
-                <p class="is-3">New User ? <a href="/auth/register">Register Here</a></p>
+            <div class="columns is-multiline container pt-3 pb-3 mt-2 has-text-centered">
+                <div class="column is-2">
+                <p class="is-3">New User ? </p>
+                </div>
+                <div class="column is-3">
+                <p><a href="/auth/register">Student Register</a></p>
+                </div>
+                <div class="column is-3">
+                <p><a href="/auth/wardenRegister">Warden Register</a></p>
+                </div>
             </div>
         </div>
     </div>
 </section>
+
+<script src="/js/login.js"></script>
+
 
 <%- include('../htmlend.ejs') %>

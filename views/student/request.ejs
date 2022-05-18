@@ -4,7 +4,7 @@
 <section class="section">
     <div class="container">
         <div class="column is-6 is-offset-3">
-            <form action="./<%=user._id%>" method="POST">
+            <form name="requestForm" onSubmit="return validateForm();" action="./<%=user._id%>" method="POST">
                 <div class="field">
                     <label for="" class="label">Type of Outing</label>
                     <div class="control">
@@ -39,5 +39,7 @@
         </div>
     </div>
 </section>
+
+<script src="/js/request.js"></script>
 
 <%- include('../htmlend')  %> 
