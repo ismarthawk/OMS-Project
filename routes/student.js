@@ -3,6 +3,7 @@ const router = express.Router();
 const Student = require("../models/student");
 const Warden = require("../models/warden");
 const Outing = require("../models/outing");
+const Block = require("../models/block");
 
 // const isStudent = (req, res, next) => {
 //   if (!req.session.student_id) {
@@ -82,6 +83,39 @@ router.route("/profile/:id").get(async (req, res) => {
   student_id = req.params.id;
   const user = await Student.findById(student_id).populate('block');
   res.render("student/profile",{user});
+});
+
+router.route("/profile/:id/edit").get(async (req, res) => {
+  student_id = req.params.id;
+  const user = await Student.findById(student_id).populate('block');
+  const branches = ['Biotech', 'Chemical', 'Civil', 'CSE', 'ECE', 'EEE', 'Mechanical', 'MME'];
+  const blocks= await Block.find();
+  res.render("student/edit",{user,blocks,branches});
+});
+
+router.route("/profile/:id/edit").post(async (req, res) => {
+  student_id = req.params.id;
+  const user = await Student.findById(student_id).populate('block');
+  const { name, year, branch, gender, roomNumber, mobileNumber, parentMobileNumber, blockid } = req.body;
+  const oldBlock = await Block.findById(user.block._id).populate('students');
+  const newBlock = await Block.findById(blockid).populate('students');
+  user.name = name;
+  user.year = year;
+  user.branch = branch;
+  user.gender = gender;
+  user.roomNumber = roomNumber;
+  user.mobileNumber = mobileNumber;
+  user.parentMobileNumber = parentMobileNumber;
+  user.block = newBlock;
+  
+  await user.save();
+  //remove user from old block
+  oldBlock.students.splice(oldBlock.students.indexOf(user), 1);
+  await oldBlock.save();
+  //add user to new block
+  newBlock.students.push(user);
+  await newBlock.save();
+  res.redirect('/student/profile/'+student_id);
 });
 
 router.route("/history/:id").get(async (req, res) => {

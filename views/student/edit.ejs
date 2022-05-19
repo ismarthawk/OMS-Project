@@ -1,0 +1,173 @@
+<%- include('../htmlhead.ejs') %> 
+<%- include('../partials/navbar.ejs') %> 
+
+<!-- Registration Part Section -->
+<style type="text/css">
+
+</style>
+</head>
+
+<body >
+    <p class="title has-text-centered">Edit Details</p>
+    <div class="columns">
+        <div class="column is-4 has-offset-2"></div>
+        <div class="column ">
+            <form name ="editForm" action="/student/profile/<%=user._id%>/edit" method="post" onSubmit="return validateForm()">
+                <div class="column ">
+                    <label class="label">Student Name</label>
+                    <div class="control ">
+                        <input name="name" class="input " type="text" placeholder="Student name" value="<%=user.name%>">
+                        <span class="icon">
+                        </span>
+                    </div>
+
+
+                    <label class="label">Registration number</label>
+                    <div class="control ">
+                        <input disabled name="regNumber" class="input " type="number" placeholder="Registration number" value="<%=user.regNumber%>">
+                        <span class="icon">
+                        </span>
+                    </div>
+
+
+                    <label class="label">Roll number</label>
+                    <div class="control ">
+                        <input disabled name="rollNumber" class="input" type="number" placeholder="Roll number" value="<%=user.rollNumber%>">
+                        <span class="icon">
+                        </span>
+                    </div>
+
+
+                    <label class="label"> Select year</label>
+                    <div>
+                        <select name="year" class="input" type="number">
+                            <% if(user.year==1){ %> 
+                            <option selected value=1> I Btech
+                            </option>
+                            <% }else{ %>
+                            <option value=1> I Btech
+                            </option>
+                            <% } %> 
+                            <% if(user.year==2){ %> 
+                                <option selected value=2> II Btech
+                                </option>
+                            <% }else{ %>
+                                <option value=2> II Btech
+                                </option>
+                            <% } %> 
+                            <% if(user.year==3){ %> 
+                                <option selected value=3> III Btech
+                                </option>
+                            <% }else{ %>
+                                <option value=3> III Btech
+                                </option>
+                            <% } %> 
+                            <% if(user.year==4){ %> 
+                                <option selected value=4> IV Btech
+                                </option>
+                            <% }else{ %>
+                                <option value=4> IV Btech
+                                </option>
+                            <% } %> 
+                        </select>
+                    </div>
+                    <br>
+
+                    <label class="label">Branch </label>
+                    <div>
+                        <select name="branch" class="input" type="text">
+                            <% for(let branch of branches) { %>
+                            <% if(user.branch==branch){ %>
+                            <option selected value="<%=branch%>"><%=branch%>
+                            </option>
+                            <% }else{ %>
+                            <option value="<%=branch%>"><%=branch%>
+                            </option>
+                            <% } %>
+                            <% }%>
+                        </select>
+                    </div>
+                    <br>
+
+
+                    <label class="label"> Select Gender</label>
+                    <div>
+                        <select name="gender" class="input" type="text">
+                            <% if(user.gender=="male"){ %> 
+                                <option selected value="male"> Male
+                                </option>
+                            <% }else{ %>
+                                <option value="male"> Male
+                                </option>
+                            <% } %> 
+                            <% if(user.year=="female"){ %> 
+                                <option selected value="female"> Female
+                                </option>
+                            <% }else{ %>
+                                <option value="female"> Female
+                                </option>
+                            <% } %> 
+                        </select>
+                    </div>
+                    <br>
+
+                    <label class="label">Block name</label>
+                    <div>
+                        <select name="blockid" class="input" type="text">
+                            <% for(let block of blocks) { %>
+                            <% if(user.block.name==block.name){ %>
+                            <option selected value="<%=block._id%>"><%=block.name%>
+                            </option>
+                            <% }else{ %>
+                            <option value="<%=block._id%>"><%=block.name%>
+                            </option>
+                            <% } %>
+                            <% }%>
+                        </select>
+                    </div>
+                    <br>
+
+
+                    <label class="label">Room number</label>
+                    <div class="control ">
+                        <input name="roomNumber" class="input " type="number" placeholder="Room number" value="<%= user.roomNumber %>">
+                        <span class="icon">
+                        </span>
+                    </div>
+
+
+                    <label class="label">Email</label>
+                    <div class="control ">
+                        <input disabled name="mail" class="input " type="email" placeholder="Email" value="<%= user.mail %>">
+                        <span class="icon">
+                        </span>
+                    </div>
+
+
+                    <label class="label">Student's phone Number</label>
+                    <div class="control ">
+                        <input name="mobileNumber" class="input " type="number" placeholder="  Student Number" value="<%=user.mobileNumber %>">
+                        <span class="icon">
+                        </span>
+                    </div>
+
+
+                    <label class="label">Parent's phone Number</label>
+                    <div class="control ">
+                        <input name="parentMobileNumber" class="input " type="number" placeholder="Parent Number" value="<%=user.parentMobileNumber %>">
+                        <span class="icon">
+                        </span>
+                    </div>
+                </div>
+                <div class="control has-text-centered">
+                    <button class="button is-link has-text-centered">Save Changes</button>
+                </div>
+        </div>
+        <div class="column is-one-quarter"></div>
+        </form>
+    </div>
+
+    <script src="/js/studentEdit.js"></script>
+
+    
+    <%- include('../htmlhead.ejs')  %>

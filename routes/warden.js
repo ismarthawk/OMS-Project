@@ -3,13 +3,14 @@ const router = express.Router();
 const Warden = require("../models/warden");
 const Outing = require("../models/outing");
 const Student= require("../models/student");
+const Block= require("../models/block")
 
 router.route("/home/:id").get(async(req, res) => {
   warden_id = req.params.id;
   const user = await Warden.findById(warden_id).populate('block').populate('pendingOutings').populate('approvedOutings').populate('rejectedOutings');
-  const pendingOutings = user.pendingOutings.slice(0,5);
+  const pendingOutings = user.pendingOutings.slice(0,2);
   const approvedOutings = user.approvedOutings.slice(0,2);
-  const rejectedOutings = user.rejectedOutings.slice(0,2);
+  const rejectedOutings = user.rejectedOutings.slice(0, 2);
   res.render("warden/home",{user,pendingOutings,approvedOutings,rejectedOutings});
 });
 
@@ -19,6 +20,36 @@ router.route("/profile/:id").get(async (req, res) => {
   const user = await Warden.findById(student_id).populate('block');
   res.render("warden/profile",{user});
 });
+
+router.route("/profile/:id/edit").get(async (req, res) => {
+  warden_id = req.params.id;
+  const user = await Warden.findById(warden_id).populate('block');
+  const branches = ['Biotech', 'Chemical', 'Civil', 'CSE', 'ECE', 'EEE', 'Mechanical', 'MME'];
+  const blocks= await Block.find();
+  res.render("warden/edit",{user,blocks,branches});
+});
+
+router.route("/profile/:id/edit").post(async (req, res) => {
+  warden_id = req.params.id;
+  const user = await Warden.findById(warden_id).populate('block');
+  const { name,mobileNumber, blockid } = req.body;
+  const oldBlock = await Block.findById(user.block._id).populate('wardens');
+  const newBlock = await Block.findById(blockid).populate('wardens');
+  user.name = name;
+  user.mobileNumber = mobileNumber;
+  user.block = newBlock;
+  
+  await user.save();
+  //remove user from old block
+  oldBlock.wardens = [];
+  await oldBlock.save();
+  //add user to new block
+  newBlock.wardens[0]=user;
+  await newBlock.save();
+  res.redirect('/warden/profile/'+warden_id);
+});
+
+
 
 router.post(("/accept/:id"), async (req, res) => {
   const outing_id = req.params.id;
