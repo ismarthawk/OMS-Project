@@ -1,0 +1,32 @@
+<%- include('../htmlhead.ejs')  %> 
+<%- include('../partials/navbar.ejs')  %>
+<section class="section">
+
+    <div class="container">
+        <p class="title">List of Students</p>
+        
+    <% if(students.length!==0){ %>
+        <%for(let student of students){ %>
+        <a href="../<%=user._id %>/detailedStudent/<%=student._id%>">
+            <div class="card mt-4 has-background-info">
+                <div class="card-content">
+                    <div class="content">
+                        <p class="is-size-5">Name : <%=student.name%></p>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <% } %>
+    <% }else { %>
+        <div class="card mt-4 has-background-info">
+            <div class="card-content">
+                <div class="content">
+                    <P>No Students</P>
+                </div>
+            </div>
+        </div>
+    <%}%>
+</div>
+
+</section>
+<%- include('../htmlend.ejs')  %> 

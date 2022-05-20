@@ -53,26 +53,62 @@
                 </div>
             </div>
         <%}%>
+        
+        <div class="columns mt-2">
+            <div class="column is-10">
+                <p class="title">Approved Outings</p>
+            </div>
+            <div class="column is-2">
+                <div class="container">
+                    <a href="../approved/<%=user._id%>" class="button is-link is-outlined">More</a>
+                </div>
+            </div>
+        </div>
+
+        <% if(approvedOutings.length!==0){ %>
+        <% for(let approvedOuting of approvedOutings) { %>
+                <a href="../detailedActive/<%=approvedOuting._id%>">
+                    <div class="card has-background-success">
+                        <div class="card-content">
+                            <div class="content">
+                                <p class="is-size-5">Date : <%=approvedOuting.requestedFor%></p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <br>
+        <% }%>
+        <% } else{ %>
+        <div class="card has-background-success">
+            <div class="card-content">
+                <div class="content">
+                    <p>No Approved Outings</p>
+                </div>
+            </div>
+        </div>
+        <%}%>
+
         </div>
         <div class="column mt-1">
+
             <div class="columns ">
                 <div class="column is-10">
-                    <p class="title">Approved Outings</p>
+                    <p class="title">List Of Students</p>
                 </div>
                 <div class="column is-2">
                     <div class="container">
-                        <a href="../approved/<%=user._id%>" class="button is-link is-outlined">More</a>
+                        <a href="../studentsList/<%=user._id%>" class="button is-link is-outlined">More</a>
                     </div>
                 </div>
             </div>
 
-            <% if(approvedOutings.length!==0){ %>
-            <% for(let approvedOuting of approvedOutings) { %>
-                    <a href="../detailedActive/<%=approvedOuting._id%>">
-                        <div class="card has-background-success">
+            <% if(students.length!==0){ %>  
+            <% for(let student of students) { %>
+                    <a href="../<%=user._id%>/detailedStudent/<%=student._id%>">
+                        <div class="card has-background-info">
                             <div class="card-content">
                                 <div class="content">
-                                    <p class="is-size-5">Date : <%=approvedOuting.requestedFor%>></p>
+                                    <p class="is-size-5">Name : <%=student.name%></p>
                                 </div>
                             </div>
                         </div>
@@ -80,16 +116,16 @@
                     <br>
             <% }%>
             <% } else{ %>
-            <div class="card has-background-success">
+            <div class="card has-background-info">
                 <div class="card-content">
                     <div class="content">
-                        <p>No Approved Outings</p>
+                        <p>No Students</p>
                     </div>
                 </div>
             </div>
             <%}%>
 
-            <div class="columns mt-1">
+            <div class="columns mt-2">
                 <div class="column is-10">
                     <p class="title">Rejected Outings</p>
                 </div>
@@ -106,7 +142,7 @@
                         <div class="card has-background-danger">
                             <div class="card-content">
                                 <div class="content">
-                                    <p class="is-size-5">Date : <%=rejectedOuting.requestedFor%>></p>
+                                    <p class="is-size-5">Date : <%=rejectedOuting.requestedFor%></p>
                                 </div>
                             </div>
                         </div>

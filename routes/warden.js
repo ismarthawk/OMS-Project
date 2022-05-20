@@ -11,7 +11,9 @@ router.route("/home/:id").get(async(req, res) => {
   const pendingOutings = user.pendingOutings.slice(0,2);
   const approvedOutings = user.approvedOutings.slice(0,2);
   const rejectedOutings = user.rejectedOutings.slice(0, 2);
-  res.render("warden/home",{user,pendingOutings,approvedOutings,rejectedOutings});
+  const block = await Block.findById(user.block).populate('students');
+  const students = block.students.slice(0,2);
+  res.render("warden/home",{user,pendingOutings,approvedOutings,rejectedOutings,students});
 });
 
 
@@ -37,6 +39,10 @@ router.route("/profile/:id/edit").post(async (req, res) => {
   const newBlock = await Block.findById(blockid).populate('wardens');
   user.name = name;
   user.mobileNumber = mobileNumber;
+  if (newBlock.wardens.length!==0) {
+    await user.save();
+    return res.redirect("/warden/profile/" + warden_id);
+  }
   user.block = newBlock;
   
   await user.save();
@@ -172,6 +178,22 @@ router.route("/rejected/:id").get(async (req, res) => {
   const user = await Warden.findById(warden_id).populate('block').populate('rejectedOutings');
   const rejectedOutings = user.rejectedOutings;
   res.render("warden/rejected",{user,rejectedOutings});
+});
+
+router.route("/studentsList/:id").get(async (req, res) => {
+  const warden_id = req.params.id;
+  const user = await Warden.findById(warden_id).populate('block');
+  const block = await Block.findById(user.block).populate('students');
+  const students = block.students;
+  res.render("warden/studentsList",{user,students});
+});
+
+router.route("/:id/detailedStudent/:student_id").get(async (req, res) => {
+  const warden_id = req.params.id;
+  const user = await Warden.findById(warden_id).populate('block');
+  const student_id = req.params.student_id;
+  const student = await Student.findById(student_id);
+  res.render("warden/detailedStudent",{user,student});
 });
 
 
