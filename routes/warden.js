@@ -12,7 +12,7 @@ router.route("/home/:id").get(async(req, res) => {
   const approvedOutings = user.approvedOutings.slice(0,2);
   const rejectedOutings = user.rejectedOutings.slice(0, 2);
   const block = await Block.findById(user.block).populate('students');
-  const students = block.students.slice(0,2);
+  const students = block.students.slice(0, 2);
   res.render("warden/home",{user,pendingOutings,approvedOutings,rejectedOutings,students});
 });
 
