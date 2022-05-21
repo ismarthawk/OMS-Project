@@ -11,8 +11,8 @@
             <div class="card mt-4 has-background-warning">
                 <div class="card-content">
                     <div class="content">
-                        <p class="is-size-5">Date : <%=pendingOuting.requestedOn%></p>
-                        <p class="is-szie-5"><%=pendingOuting.type%></p>
+                        <p class="is-size-5">Date : <%=pendingOuting.requestedOn.toString().slice(0,15)%></p>
+                        <p class="is-szie-5">Type : <%=pendingOuting.type%></p>
                     </div>
                 </div>
             </div>

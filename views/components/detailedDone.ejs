@@ -9,12 +9,23 @@
                     <p></p>
                 </div>
             </div>
+            <label class="label">Requested By :</label>
+            <p><%=outing.requestedBy.name%></p>
             <label class="label">Date :</label>
-            <p><%=outing.requestedFor%></p>
+            <p><%=outing.requestedFor.toString().slice(0,15)%></p>
             <label class="label">Requested On :</label>
-            <p><%=outing.requestedOn%></p>
-            <label class="label">Approved/Rejected On :</label>
-            <p><%=outing.approvedOn%></p>
+            <p><%=outing.requestedOn.toString().slice(0,15)%></p>
+
+            <% if(outing.usedOn!=null){ %> 
+            <label class="label">Approved On :</label>
+            <p><%=outing.approvedOn.toString().slice(0,15)%></p>
+            <label class="label">Used On :</label>
+            <p><%=outing.usedOn.toString().slice(0,15)%></p>
+            <% }else{ %> 
+            <label class="label">Rejected On :</label>
+            <p><%=outing.approvedOn.toString().slice(0,15)%></p>
+            <% } %> 
+            
             <label for="" class="label">Type :</label>
             <p><%=outing.type%></p>
             <label class="label">Place :</label>

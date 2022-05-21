@@ -11,7 +11,7 @@
         <div class="card mt-4 has-background-danger">
             <div class="card-content">
                 <div class="content">
-                    <p class="is-size-5">Date : <%=usedOuting.requestedFor%></p>
+                    <p class="is-size-5">Date : <%=usedOuting.requestedFor.toString().slice(0,15)%></p>
                     <p class="is-szie-5"><%=usedOuting.type%></p>
                 </div>
             </div>
@@ -39,7 +39,7 @@
         <div class="card mt-4 has-background-danger">
             <div class="card-content">
                 <div class="content">
-                    <p class="is-size-5">Date : <%=rejectedOuting.requestedFor%></p>
+                    <p class="is-size-5">Date : <%=rejectedOuting.requestedFor.toString().slice(0,15)%></p>
                     <p class="is-szie-5"><%=rejectedOuting.type%></p>
                 </div>
             </div>

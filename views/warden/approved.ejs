@@ -3,7 +3,7 @@
 <section class="section">
 
     <div class="container">
-        <p class="title">Pending Passes</p>
+        <p class="title">Approved Passes</p>
         
     <% if(approvedOutings.length!==0){ %>
         <%for(let approvedOuting of approvedOutings){ %>
@@ -11,8 +11,9 @@
             <div class="card mt-4 has-background-success">
                 <div class="card-content">
                     <div class="content">
-                        <p class="is-size-5">Date : <%=approvedOuting.requestedOn%></p>
-                        <p class="is-szie-5"><%=approvedOuting.type%></p>
+                        <p class="is-size-5">Student Name : <%= approvedOuting.requestedBy.name%> </p>
+                        <p class="is-size-5">Date : <%=approvedOuting.requestedOn.toString().slice(0,15)%></p>
+                        <p class="is-size-5">Type : <%=approvedOuting.type%></p>
                     </div>
                 </div>
             </div>

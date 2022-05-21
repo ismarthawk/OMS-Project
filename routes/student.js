@@ -54,28 +54,32 @@ router.route("/request/:id").post(async (req, res) => {
 
 router.route("/detailedActive/:outingid").get(async (req, res) => {
   outing_id = req.params.outingid;
+  const isStudent = true;
   const outing = await Outing.findById(outing_id).populate('requestedBy');
   student_id = outing.requestedBy;
   const user = await Student.findById(student_id).populate('block');
-  res.render("components/detailedActive", { user ,outing});
+  res.render("components/detailedActive", { user ,outing,isStudent});
 });
 
 
 router.route("/detailedPending/:outingid").get(async (req, res) => {
   outing_id = req.params.outingid;
+  const isStudent = true;
   const outing = await Outing.findById(outing_id).populate('requestedBy');
   student_id = outing.requestedBy;
   const user = await Student.findById(student_id).populate('block');
-  res.render("components/detailedPending", { user ,outing});
+  res.render("components/detailedPending", { user ,outing,isStudent});
 });
 
 
 router.route("/detailedDone/:outingid").get(async (req, res) => {
   outing_id = req.params.outingid;
+  const isStudent = true;
   const outing = await Outing.findById(outing_id).populate('requestedBy');
   student_id = outing.requestedBy;
   const user = await Student.findById(student_id).populate('block');
-  res.render("components/detailedDone", { user ,outing});
+  console.log(outing.usedOn);
+  res.render("components/detailedDone", { user ,outing,isStudent});
 });
 
 
@@ -144,6 +148,7 @@ router.post(("/use/:id"), async (req, res) => {
   student.usedOutings.push(outing);
   student.activeOuting = null;
   await student.save();
+  await outing.save();
   res.redirect("/student/home/"+student_id);
 })
 

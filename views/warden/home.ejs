@@ -28,7 +28,8 @@
             <div class="card mt-4 has-background-warning">
                 <div class="card-content">
                     <div class="content">
-                        <p class="is-size-5">Date : <%=pendingOuting.requestedFor%></p>
+                        <p class="is-size-5">Student Name : <%=pendingOuting.requestedBy.name %>  </p>
+                        <p class="is-size-5">Date : <%=pendingOuting.requestedFor.toString().slice(0,15)%></p>
                         <p class="is-size-5">Type : <%=pendingOuting.type%></p>
                         <p class="is-size-5"></p>
                         <div class="buttons">
@@ -71,7 +72,8 @@
                     <div class="card has-background-success">
                         <div class="card-content">
                             <div class="content">
-                                <p class="is-size-5">Date : <%=approvedOuting.requestedFor%></p>
+                                <p class="is-size-5">Student Name : <%=approvedOuting.requestedBy.name%></p>
+                                <p class="is-size-5">Date : <%=approvedOuting.requestedFor.toString().slice(0,15)%></p>
                             </div>
                         </div>
                     </div>
@@ -109,6 +111,7 @@
                             <div class="card-content">
                                 <div class="content">
                                     <p class="is-size-5">Name : <%=student.name%></p>
+                                    <p class="is-size-5">Roll No : <%=student.rollNumber%></p>
                                 </div>
                             </div>
                         </div>
@@ -142,7 +145,8 @@
                         <div class="card has-background-danger">
                             <div class="card-content">
                                 <div class="content">
-                                    <p class="is-size-5">Date : <%=rejectedOuting.requestedFor%></p>
+                                    <p class="is-size-5">Student Name : <%=rejectedOuting.requestedBy.name%></p>
+                                    <p class="is-size-5">Date : <%=rejectedOuting.requestedFor.toString().slice(0,15)%></p>
                                 </div>
                             </div>
                         </div>

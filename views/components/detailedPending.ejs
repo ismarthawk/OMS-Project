@@ -9,16 +9,33 @@
                     <p></p>
                 </div>
             </div>
+            <label class="label">Requested By :</label>
+            <p><%=outing.requestedBy.name%></p>
             <label class="label">Date :</label>
-            <p><%=outing.requestedFor%></p>
+            <p><%=outing.requestedFor.toString().slice(0,15)%></p>
             <label class="label">Requested On :</label>
-            <p><%=outing.requestedOn%></p>
+            <p><%=outing.requestedOn.toString().slice(0,15)%></p>
             <label for="" class="label">Type :</label>
             <p><%=outing.type%></p>
             <label class="label">Place :</label>
             <p><%=outing.where%></p>
             <label for="" class="label">Description :</label>
             <p><%=outing.desc%></p>
+
+            <% if(!isStudent){ %>
+                <div class="columns">
+                    <div class="column">
+                <form action="/warden/accept/<%=outing._id%>" method="post" class="container has-text-centered">
+                    <button class="button is-link is-success">Accept</button>
+                </form>
+            </div>
+            <div class="column">
+                <form action="/warden/reject/<%=outing._id%>" method="post" class="container has-text-centered">
+                    <button class="button is-link is-danger">Reject</button>
+                </form>
+            </div>
+            </div>
+            <% } %> 
         </div>
     </div>
 </section>

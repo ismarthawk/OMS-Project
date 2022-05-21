@@ -7,8 +7,8 @@ const Block= require("../models/block")
 
 router.route("/home/:id").get(async(req, res) => {
   warden_id = req.params.id;
-  const user = await Warden.findById(warden_id).populate('block').populate('pendingOutings').populate('approvedOutings').populate('rejectedOutings');
-  const pendingOutings = user.pendingOutings.slice(0,2);
+  const user = await Warden.findById(warden_id).populate('block').populate({ path: 'pendingOutings', populate: { path: 'requestedBy' } }).populate({ path: 'approvedOutings', populate: { path: 'requestedBy' } }).populate({ path:'rejectedOutings',populate:{path:'requestedBy'}});
+  const pendingOutings = user.pendingOutings.slice(0, 2);
   const approvedOutings = user.approvedOutings.slice(0,2);
   const rejectedOutings = user.rejectedOutings.slice(0, 2);
   const block = await Block.findById(user.block).populate('students');
@@ -135,47 +135,50 @@ router.post(("/rejectAll/:id"), async (req, res) => {
 
 router.route("/detailedActive/:outingid").get(async (req, res) => {
   outing_id = req.params.outingid;
-  const outing = await Outing.findById(outing_id).populate('requestedTo');
+  const isStudent = false;
+  const outing = await Outing.findById(outing_id).populate('requestedTo').populate('requestedBy');
   warden_id = outing.requestedTo;
   const user = await Warden.findById(warden_id).populate('block');
-  res.render("components/detailedActive", { user ,outing});
+  res.render("components/detailedActive", { user ,outing,isStudent});
 });
 
 
 router.route("/detailedPending/:outingid").get(async (req, res) => {
   outing_id = req.params.outingid;
-  const outing = await Outing.findById(outing_id).populate('requestedTo');
+  const isStudent = false;
+  const outing = await Outing.findById(outing_id).populate('requestedTo').populate('requestedBy');
   warden_id = outing.requestedTo;
   const user = await Warden.findById(warden_id).populate('block');
-  res.render("components/detailedPending", { user ,outing});
+  res.render("components/detailedPending", { user ,outing,isStudent});
 });
 
 
 router.route("/detailedDone/:outingid").get(async (req, res) => {
   outing_id = req.params.outingid;
-  const outing = await Outing.findById(outing_id).populate('requestedTo');
+  const isStudent = false;
+  const outing = await Outing.findById(outing_id).populate('requestedTo').populate('requestedBy');
   warden_id = outing.requestedTo;
   const user = await Warden.findById(warden_id).populate('block');
-  res.render("components/detailedDone", { user ,outing});
+  res.render("components/detailedDone", { user ,outing,isStudent});
 });
 
 router.route("/pending/:id").get(async (req, res) => {
   warden_id = req.params.id;
-  const user = await Warden.findById(warden_id).populate('block').populate('pendingOutings');
+  const user = await Warden.findById(warden_id).populate('block').populate({ path: 'pendingOutings', populate: { path: 'requestedBy' } });
   const pendingOutings = user.pendingOutings;
   res.render("warden/pending",{user,pendingOutings});
 });
 
 router.route("/approved/:id").get(async (req, res) => {
   const warden_id = req.params.id;
-  const user = await Warden.findById(warden_id).populate('block').populate('approvedOutings');
+  const user = await Warden.findById(warden_id).populate('block').populate({ path:'approvedOutings',populate:{ path: 'requestedBy' } });
   const approvedOutings = user.approvedOutings;
   res.render("warden/approved",{user,approvedOutings});
 });
 
 router.route("/rejected/:id").get(async (req, res) => {
   const warden_id = req.params.id;
-  const user = await Warden.findById(warden_id).populate('block').populate('rejectedOutings');
+  const user = await Warden.findById(warden_id).populate('block').populate({path:'rejectedOutings',populate:{ path: 'requestedBy'}});
   const rejectedOutings = user.rejectedOutings;
   res.render("warden/rejected",{user,rejectedOutings});
 });

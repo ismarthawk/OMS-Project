@@ -18,8 +18,20 @@
             </div>
             <section class="section">
                 <div class="container">
+                    <div class="columns">
+                        <div class="column">
                     <a href="../history/<%=user._id%>"><button class="button is-link">History</button></a>
+                </div>
+                <div class="column">
+                    <% if(warden){ %> 
                     <a href="../request/<%=user._id%>"><button class="button is-link">Request</button></a>
+                    <% }else{ %>
+                    <fieldset disabled>
+                    <a href="#"><button class="button is-link disabled">Request</button></a>
+                    </fieldset>
+                    <% } %> 
+                </div>
+                    </div>
                 </div>
             </section>
         </div>
@@ -41,7 +53,8 @@
                 <div class="card has-background-success">
                     <div class="card-content">
                         <div class="content">
-                            <p class="is-size-5">Date : <%=activeOuting.requestedFor%></p>
+                            <p class="is-size-5">Date : <%=activeOuting.requestedFor.toString().slice(0,15)%></p>
+                            <p class="is-size-5">Type : <%=activeOuting.type%></p>
                         </div>
                     </div>
                 </div>
@@ -74,7 +87,8 @@
                         <div class="card has-background-warning">
                             <div class="card-content">
                                 <div class="content">
-                                    <p class="is-size-5">Date : <%=pendingOuting.requestedFor%>></p>
+                                    <p class="is-size-5">Date : <%=pendingOuting.requestedFor.toString().slice(0,15)%></p>
+                                    <p class="is-size-5">Type : <%=pendingOuting.type%></p>
                                 </div>
                             </div>
                         </div>

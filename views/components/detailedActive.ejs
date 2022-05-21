@@ -9,21 +9,25 @@
                     <p></p>
                 </div>
             </div>
+            <label class="label">Requested By :</label>
+            <p><%=outing.requestedBy.name%></p>
             <label class="label">Date :</label>
-            <p><%=outing.requestedFor%></p>
+            <p><%=outing.requestedFor.toString().slice(0,15)%></p>
             <label class="label">Requested On :</label>
-            <p><%=outing.requestedOn%></p>
+            <p><%=outing.requestedOn.toString().slice(0,15)%></p>
             <label class="label">Approved On :</label>
-            <p><%=outing.approvedOn%></p>
+            <p><%=outing.approvedOn.toString().slice(0,15)%></p>
             <label for="" class="label">Type :</label>
             <p><%=outing.type%></p>
             <label class="label">Place :</label>
             <p><%=outing.where%></p>
             <label for="" class="label">Description :</label>
             <p><%=outing.desc%></p>
+            <% if(isStudent){ %> 
             <form action="/student/use/<%=outing._id%>" method="post" class="mt-6 container has-text-centered">
                 <button class="button is-link is-medium">Use</button>
             </form>
+            <% } %> 
         </div>
     </div>
 </section>
