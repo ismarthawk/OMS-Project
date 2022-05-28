@@ -27,5 +27,5 @@ $ npm i
  
 ### Simple build the project
 
-  $ node build
+  $ npm run build
   
