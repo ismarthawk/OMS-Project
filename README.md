@@ -1,9 +1,31 @@
-# OMS-Project
+# OMS-Outing Management System
 
-### Project Set up.
+This application simplifies the process of issuing outpass to students . Students can send requests to warden and wardens can react accordingly. 
 
+### Users - Warden , Student 
 
-- clone the project
-- cmd >  'npm i' to install dependencies
-- cmd >  'npm i -D nodemon' to install nodemon as a dev dependency.
-- cmd > 'npm run dev' to start development server.
+### Functionalties
+
+Student - Request , view Histories , profile , update Profile ,..etc
+
+Warden - Accept/Reject requests , view Histories , view Students , view Profiles ,..etc
+
+### Requirements 
+  
+- Node.js
+- MongoDB
+
+### Installation
+
+- cd Project Directory
+  
+  $ npm i
+
+### Running the Project
+
+  $ node server.js
+ 
+### Simple build the project
+
+  $ node build
+  
