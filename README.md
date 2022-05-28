@@ -19,7 +19,7 @@ Warden - Accept/Reject requests , view Histories , view Students , view Profiles
 
 - cd Project Directory
   
-  $ npm i
+$ npm i
 
 ### Running the Project
 
